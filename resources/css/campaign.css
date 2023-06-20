@@ -1,0 +1,108 @@
+body {
+	margin: 0;
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
+    height: 100%;
+}
+
+.container {
+	margin-left: 25%;
+    margin-top: 5%;
+}
+
+.campaignTable{
+    width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+   
+}
+
+.tableHeader th, td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+}
+
+.tableHeader th {
+	text-align: left;
+}
+
+.tableHeader {
+	
+	background-color: #172978;
+}
+
+tbody tr:hover {
+	
+	background-color: rgba(255,255,255,0.3);
+	
+}
+
+.redCircle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgb(230, 29, 29);
+    display: inline-block;
+    top: 2px;
+}
+
+.greenCircle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgb(31, 185, 31);
+    display: inline-block;
+    top: 2px;
+}
+
+.inputName, .searchName, .inputStartDate, .inputEndDate, .btnAction, .searchDate {
+    padding: 10px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.searchName, .btnAction, .searchDate{
+    background-color:#172978;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.inputStartDate, .inputEndDate{
+    margin-right: 10px;
+}
+
+.date-picker-container {
+    display: flex;
+}
+
+.date-picker-container .date-picker {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.loadContainer, .errorContainer{
+    color: white;
+    font-family: sans-serif;
+	font-weight: 200;
+    font-size: 20px;
+}
+
+.hideCampaignContainer{
+    display: none;
+}
+  
+.showCampaignContainer{
+    display: block;
+}
+
+.postErrorContainer{
+    color:rgb(206, 90, 90);
+    font-size: 15px;
+    font-weight: 600;
+
+}
+  
