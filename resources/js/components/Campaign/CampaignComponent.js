@@ -24,6 +24,7 @@ const CampaignComponent = () => {
     const [startDateSearchVal, setStartDateSearchVal] = useState("");
     const [endDateSearchVal, setEndDateSearchVal] = useState("");
     const [minEndDate, setMinEndDate] = useState("");
+    const [activePage, setActivePage] = useState("");
     const { items, loading, error } = useSelector((state) => state.data);
     const [itemOffset, setItemOffset] = useState(0);
     const itemsPerPage = 10;
@@ -73,11 +74,14 @@ const CampaignComponent = () => {
                     .toLowerCase()
                     .includes(nameSearchVal.toLowerCase());
             });
+            // console.log('filterDataValue',items, filterDataValue)
             refreshData(filterDataValue);
             const validationDate = validateDates();
             if (startDateSearchVal && endDateSearchVal && validationDate) {
                 const filteredDate = filterData(filterDataValue);
             }
+            setItemOffset(0);
+            setActivePage(0);
         } else {
             setDateError("Please enter name to search");
         }
@@ -89,6 +93,7 @@ const CampaignComponent = () => {
             new Date(endDateSearchVal).getTime()
         ) {
             setDateError("Start date cannot be after end date.");
+            refreshData([]);
             return false;
         }
 
@@ -129,6 +134,8 @@ const CampaignComponent = () => {
                 });
                 refreshData(filterDataValue);
             }
+            setItemOffset(0);
+            setActivePage(0);
         }
         return true;
     };
@@ -235,6 +242,7 @@ const CampaignComponent = () => {
                         pageRangeDisplayed={5}
                         className="pagination"
                         pageCount={pageCount}
+                        forcePage={activePage}
                         previousLabel="<"
                         renderOnZeroPageCount={null}
                     />

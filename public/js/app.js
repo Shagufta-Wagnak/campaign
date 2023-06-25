@@ -7451,16 +7451,20 @@ var CampaignComponent = function CampaignComponent() {
     _useState14 = _slicedToArray(_useState13, 2),
     minEndDate = _useState14[0],
     setMinEndDate = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState16 = _slicedToArray(_useState15, 2),
+    activePage = _useState16[0],
+    setActivePage = _useState16[1];
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
       return state.data;
     }),
     items = _useSelector.items,
     loading = _useSelector.loading,
     error = _useSelector.error;
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-    _useState16 = _slicedToArray(_useState15, 2),
-    itemOffset = _useState16[0],
-    setItemOffset = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState18 = _slicedToArray(_useState17, 2),
+    itemOffset = _useState18[0],
+    setItemOffset = _useState18[1];
   var itemsPerPage = 10;
   var endOffset = itemOffset + itemsPerPage;
   var currentItems = data === null || data === void 0 ? void 0 : data.slice(itemOffset, endOffset);
@@ -7499,11 +7503,14 @@ var CampaignComponent = function CampaignComponent() {
       var filterDataValue = items.filter(function (item) {
         return item.name.toLowerCase().includes(nameSearchVal.toLowerCase());
       });
+      // console.log('filterDataValue',items, filterDataValue)
       refreshData(filterDataValue);
       var validationDate = validateDates();
       if (startDateSearchVal && endDateSearchVal && validationDate) {
         var filteredDate = filterData(filterDataValue);
       }
+      setItemOffset(0);
+      setActivePage(0);
     } else {
       setDateError("Please enter name to search");
     }
@@ -7511,6 +7518,7 @@ var CampaignComponent = function CampaignComponent() {
   var validateDates = function validateDates() {
     if (new Date(startDateSearchVal).getTime() > new Date(endDateSearchVal).getTime()) {
       setDateError("Start date cannot be after end date.");
+      refreshData([]);
       return false;
     }
     setDateError("");
@@ -7540,6 +7548,8 @@ var CampaignComponent = function CampaignComponent() {
         });
         refreshData(filterDataValue);
       }
+      setItemOffset(0);
+      setActivePage(0);
     }
     return true;
   };
@@ -7634,6 +7644,7 @@ var CampaignComponent = function CampaignComponent() {
         pageRangeDisplayed: 5,
         className: "pagination",
         pageCount: pageCount,
+        forcePage: activePage,
         previousLabel: "<",
         renderOnZeroPageCount: null
       })]
