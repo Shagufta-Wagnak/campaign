@@ -7170,10 +7170,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/AddCampaign.js":
-/*!************************************************!*\
-  !*** ./resources/js/components/AddCampaign.js ***!
-  \************************************************/
+/***/ "./resources/js/components/Campaign/AddCampaign.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/Campaign/AddCampaign.js ***!
+  \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7183,12 +7183,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/dist/react-datepicker.min.js");
-/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./redux/store */ "./resources/js/components/redux/store.js");
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/dist/react-datepicker.min.js");
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _redux_dataSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../redux/dataSlice */ "./resources/js/components/redux/dataSlice.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-datepicker/dist/react-datepicker.css */ "./node_modules/react-datepicker/dist/react-datepicker.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils */ "./resources/js/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -7202,28 +7203,39 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var AddCampaignComponent = function AddCampaignComponent() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState2 = _slicedToArray(_useState, 2),
     campaignName = _useState2[0],
     setCampaignName = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState4 = _slicedToArray(_useState3, 2),
     startDate = _useState4[0],
     setStartDate = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState6 = _slicedToArray(_useState5, 2),
     endDate = _useState6[0],
     setEndDate = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('error'),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState8 = _slicedToArray(_useState7, 2),
-    errorPost = _useState8[0],
-    setErrorPost = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    isCampaignSucess = _useState8[0],
+    setIsCampaignSucess = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState10 = _slicedToArray(_useState9, 2),
-    budget = _useState10[0],
-    setBudget = _useState10[1];
+    errorPost = _useState10[0],
+    setErrorPost = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState12 = _slicedToArray(_useState11, 2),
+    budget = _useState12[0],
+    setBudget = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date().setHours(0, 0, 0, 0)),
+    _useState14 = _slicedToArray(_useState13, 2),
+    minEndDate = _useState14[0],
+    setMinEndDate = _useState14[1];
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
       return state.data;
     }),
@@ -7231,56 +7243,85 @@ var AddCampaignComponent = function AddCampaignComponent() {
     postLoading = _useSelector.postLoading,
     postError = _useSelector.postError;
   var resetForm = function resetForm() {
-    setCampaignName('');
-    setStartDate('');
-    setEndDate('');
-    setBudget('');
+    setCampaignName("");
+    setStartDate("");
+    setEndDate("");
+    setBudget("");
   };
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!postError && !postLoading) {
-      var apiUrl = 'http://localhost/campaign/public/api/campaigndata';
-      dispatch((0,_redux_store__WEBPACK_IMPORTED_MODULE_1__.fetchData)(apiUrl));
+  var handleCampaignInput = function handleCampaignInput(value) {
+    var regex = /^[a-zA-Z0-9\s]+$/;
+    setCampaignName(value);
+    if (regex.test(value)) {
+      setErrorPost("");
+    } else {
+      setErrorPost("Campaign name can only contain letters and numbers");
+      return false;
     }
-  }, [postItem, postLoading, postError]);
-  function handleDate(date, type) {
-    var numericValue = /^\d+$/.test(date.getTime()) ? date : '';
-    date = numericValue;
-    if (type === 'startDate') {
+    return true;
+  };
+  var handleDate = function handleDate(date, type) {
+    if (type === "startDate") {
       setStartDate(date);
     } else {
       setEndDate(date);
     }
-  }
-  var formatDate = function formatDate(date) {
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var year = date.getFullYear();
-    return "".concat(month, "/").concat(day, "/").concat(year);
+  };
+  var checkRequiredValidation = function checkRequiredValidation() {
+    if (campaignName.trim() !== "" && startDate !== "" && endDate !== "" && budget.trim() !== "") {
+      setErrorPost("");
+      return true;
+    } else {
+      setErrorPost("All fields are required");
+      return false;
+    }
   };
   var handleCampaignSubmit = function handleCampaignSubmit() {
-    var startDateVal = formatDate(startDate);
-    var endDateVal = formatDate(endDate);
-    var postDataValues = {
-      name: campaignName,
-      startDate: startDateVal,
-      endDate: endDateVal,
-      budget: budget
-    };
-    dispatch((0,_redux_store__WEBPACK_IMPORTED_MODULE_1__.postData)(postDataValues));
-    resetForm();
+    if (checkRequiredValidation()) {
+      if (handleCampaignInput(campaignName)) {
+        var startDateVal = (0,_utils__WEBPACK_IMPORTED_MODULE_4__.formatDate)(startDate, false);
+        var endDateVal = (0,_utils__WEBPACK_IMPORTED_MODULE_4__.formatDate)(endDate, false);
+        var postDataValues = {
+          name: campaignName,
+          startDate: startDateVal,
+          endDate: endDateVal,
+          budget: budget
+        };
+        dispatch((0,_redux_dataSlice__WEBPACK_IMPORTED_MODULE_1__.postData)(postDataValues));
+        resetForm();
+        return true;
+      }
+    } else {
+      return false;
+    }
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!postError && !postLoading && postItem !== null && postItem !== void 0 && postItem.length) {
+      setIsCampaignSucess(true);
+      setTimeout(function () {
+        setIsCampaignSucess(false);
+        var apiUrl = "api/campaigndata";
+        dispatch((0,_redux_dataSlice__WEBPACK_IMPORTED_MODULE_1__.fetchData)(apiUrl));
+      }, 2000);
+    }
+  }, [postItem, postLoading, postError]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (startDate) {
+      setMinEndDate(startDate);
+      setEndDate(startDate);
+    }
+  }, [startDate]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
         type: "text",
         value: campaignName,
         onChange: function onChange(event) {
-          return setCampaignName(event.target.value);
+          return handleCampaignInput(event.target.value);
         },
         className: "inputName",
         placeholder: "Enter Campaign Name"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-        type: "text",
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+        type: "number",
         value: budget,
         onChange: function onChange(event) {
           return setBudget(event.target.value);
@@ -7288,27 +7329,39 @@ var AddCampaignComponent = function AddCampaignComponent() {
         className: "inputName",
         placeholder: "Enter Budget"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "date-picker-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_5___default()), {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_6___default()), {
         selected: startDate,
         onChange: function onChange(date) {
-          return handleDate(date, 'startDate');
+          return handleDate(date, "startDate");
         },
         className: "inputStartDate date-picker",
-        placeholderText: "Enter Start Date"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_5___default()), {
+        placeholderText: "Enter Start Date",
+        dateFormat: "dd/MM/yyyy",
+        minDate: today,
+        onKeyDown: _utils__WEBPACK_IMPORTED_MODULE_4__.handleKeyDown
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_6___default()), {
         selected: endDate,
         onChange: function onChange(date) {
-          return handleDate(date, 'endDate');
+          return handleDate(date, "endDate");
         },
-        className: "inputStartDate date-picker",
-        placeholderText: "Enter End Date"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        className: "inputEndDate date-picker",
+        placeholderText: "Enter End Date",
+        dateFormat: "dd/MM/yyyy",
+        minDate: minEndDate,
+        onKeyDown: _utils__WEBPACK_IMPORTED_MODULE_4__.handleKeyDown
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
         className: "btnAction",
         onClick: handleCampaignSubmit,
         children: "Submit"
       })]
+    }), errorPost && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "postErrorContainer msgContainer",
+      children: errorPost
+    }), isCampaignSucess && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      className: "postCampaignSuccess msgContainer",
+      children: "Campaign details submitted successfully"
     })]
   });
 };
@@ -7316,10 +7369,10 @@ var AddCampaignComponent = function AddCampaignComponent() {
 
 /***/ }),
 
-/***/ "./resources/js/components/CampaignComponent.js":
-/*!******************************************************!*\
-  !*** ./resources/js/components/CampaignComponent.js ***!
-  \******************************************************/
+/***/ "./resources/js/components/Campaign/CampaignComponent.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Campaign/CampaignComponent.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7330,14 +7383,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./redux/store */ "./resources/js/components/redux/store.js");
-/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/dist/react-datepicker.min.js");
-/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _AddCampaign__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddCampaign */ "./resources/js/components/AddCampaign.js");
-/* harmony import */ var _CampaignList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CampaignList */ "./resources/js/components/CampaignList.js");
-/* harmony import */ var _css_campaign_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../css/campaign.css */ "./resources/css/campaign.css");
+/* harmony import */ var _redux_dataSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/dataSlice */ "./resources/js/components/redux/dataSlice.js");
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/dist/react-datepicker.min.js");
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _AddCampaign__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddCampaign */ "./resources/js/components/Campaign/AddCampaign.js");
+/* harmony import */ var _CampaignList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CampaignList */ "./resources/js/components/Campaign/CampaignList.js");
+/* harmony import */ var _css_campaign_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../css/campaign.css */ "./resources/css/campaign.css");
 /* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-datepicker/dist/react-datepicker.css */ "./node_modules/react-datepicker/dist/react-datepicker.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _css_paginate_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../css/paginate.css */ "./resources/css/paginate.css");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils */ "./resources/js/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -7350,6 +7407,10 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
 
 
 
@@ -7374,50 +7435,67 @@ var CampaignComponent = function CampaignComponent() {
     _useState6 = _slicedToArray(_useState5, 2),
     isShowCampaign = _useState6[0],
     setIsShowCampaign = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState8 = _slicedToArray(_useState7, 2),
     nameSearchVal = _useState8[0],
     setNameSearchVal = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState10 = _slicedToArray(_useState9, 2),
     startDateSearchVal = _useState10[0],
     setStartDateSearchVal = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState12 = _slicedToArray(_useState11, 2),
     endDateSearchVal = _useState12[0],
     setEndDateSearchVal = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState14 = _slicedToArray(_useState13, 2),
+    minEndDate = _useState14[0],
+    setMinEndDate = _useState14[1];
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
       return state.data;
     }),
     items = _useSelector.items,
     loading = _useSelector.loading,
     error = _useSelector.error;
-  var isDateBetween = function isDateBetween(startDate, endDate) {
-    var currentDate = new Date();
-    return currentDate >= startDate && currentDate <= endDate;
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState16 = _slicedToArray(_useState15, 2),
+    itemOffset = _useState16[0],
+    setItemOffset = _useState16[1];
+  var itemsPerPage = 10;
+  var endOffset = itemOffset + itemsPerPage;
+  var currentItems = data === null || data === void 0 ? void 0 : data.slice(itemOffset, endOffset);
+  var pageCount = Math.ceil(data.length / itemsPerPage);
+  var handlePageClick = function handlePageClick(event) {
+    var newOffset = event.selected * itemsPerPage % data.length;
+    setItemOffset(newOffset);
   };
   var refreshData = function refreshData(items) {
-    // console.log('items', items)
     setData(items.map(function (item) {
       var startDate = new Date(item.startDate);
       var endDate = new Date(item.endDate);
-      var isActive = isDateBetween(startDate, endDate);
+      var formattedStartDate = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.formatDate)(startDate);
+      var formattedEndDate = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.formatDate)(endDate);
+      var isActive = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.isDateBetween)(startDate, endDate);
+      var currency = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.formatCurrency)(item.Budget);
       return _objectSpread(_objectSpread({}, item), {}, {
-        isActive: isActive
+        isActive: isActive,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate,
+        Budget: currency
       });
     }));
   };
   function handleDateInput(date, type) {
-    var numericValue = /^\d+$/.test(date.getTime()) ? date : '';
-    date = numericValue;
-    if (type === 'startDate') {
+    if (type === "startDate") {
       setStartDateSearchVal(date);
     } else {
       setEndDateSearchVal(date);
     }
   }
   var handleNameSearch = function handleNameSearch() {
-    if (nameSearchVal !== "") {
+    console.log("callleddddd");
+    if (nameSearchVal.trim() !== "") {
+      setDateError("");
       var filterDataValue = items.filter(function (item) {
         return item.name.toLowerCase().includes(nameSearchVal.toLowerCase());
       });
@@ -7427,30 +7505,35 @@ var CampaignComponent = function CampaignComponent() {
         var filteredDate = filterData(filterDataValue);
       }
     } else {
-      refreshData(items);
+      setDateError("Please enter name to search");
     }
   };
   var validateDates = function validateDates() {
-    if (new Date(startDateSearchVal) > new Date(endDateSearchVal)) {
-      setDateError('Start date cannot be after end date.');
+    if (new Date(startDateSearchVal).getTime() > new Date(endDateSearchVal).getTime()) {
+      setDateError("Start date cannot be after end date.");
       return false;
     }
-    setDateError('');
+    setDateError("");
     return true;
   };
   var filterData = function filterData(dataValues) {
     var filtered = dataValues.filter(function (item) {
       var itemStartDate = new Date(item.startDate);
       var itemEndDate = new Date(item.endDate);
-      return itemStartDate <= new Date(startDateSearchVal) && itemEndDate >= new Date(endDateSearchVal);
+      return itemStartDate.getTime() <= new Date(startDateSearchVal.getTime()) && itemEndDate.getTime() >= new Date(endDateSearchVal.getTime());
     });
     refreshData(filtered);
     return filtered;
   };
   var handleDateFilter = function handleDateFilter(e) {
     var validationDate = validateDates();
+    if (!startDateSearchVal || !endDateSearchVal) {
+      setDateError("Start Date or End Date cannot be empty");
+      return false;
+    }
     if (startDateSearchVal && endDateSearchVal && validationDate) {
-      var filteredDate = filterData(data);
+      setDateError("");
+      var filteredDate = filterData(items);
       if (nameSearchVal !== "") {
         var filterDataValue = filteredDate.filter(function (item) {
           return item.name.toLowerCase().includes(nameSearchVal.toLowerCase());
@@ -7458,47 +7541,58 @@ var CampaignComponent = function CampaignComponent() {
         refreshData(filterDataValue);
       }
     }
+    return true;
   };
   var handleResetFilters = function handleResetFilters() {
-    setNameSearchVal('');
-    setStartDateSearchVal('');
-    setEndDateSearchVal('');
-    setDateError('');
+    setNameSearchVal("");
+    setStartDateSearchVal("");
+    setEndDateSearchVal("");
+    setDateError("");
     refreshData(items);
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var apiUrl = 'http://localhost/campaign/public/api/campaigndata';
-    dispatch((0,_redux_store__WEBPACK_IMPORTED_MODULE_2__.fetchData)(apiUrl));
+    var apiUrl = "api/campaigndata";
+    dispatch((0,_redux_dataSlice__WEBPACK_IMPORTED_MODULE_2__.fetchData)(apiUrl));
   }, [dispatch]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (items) {
       refreshData(items);
     }
   }, [items]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (startDateSearchVal) {
+      setMinEndDate(startDateSearchVal);
+    }
+  }, [startDateSearchVal]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "date-picker-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_8___default()), {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_11___default()), {
           selected: startDateSearchVal,
           className: "inputStartDate date-picker",
           placeholderText: "Start-Date",
+          dateFormat: "dd/MM/yyyy",
           onChange: function onChange(date) {
-            return handleDateInput(date, 'startDate');
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_8___default()), {
+            return handleDateInput(date, "startDate");
+          },
+          onKeyDown: _utils__WEBPACK_IMPORTED_MODULE_9__.handleKeyDown
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_11___default()), {
           selected: endDateSearchVal,
           className: "inputEndDate date-picker",
           placeholderText: "End-Date",
+          dateFormat: "dd/MM/yyyy",
           onChange: function onChange(date) {
-            return handleDateInput(date, 'endDate');
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+            return handleDateInput(date, "endDate");
+          },
+          onKeyDown: _utils__WEBPACK_IMPORTED_MODULE_9__.handleKeyDown,
+          minDate: minEndDate
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "searchDate",
           onClick: handleDateFilter,
           children: "Search"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("input", {
         type: "text",
         value: nameSearchVal,
         onChange: function onChange(event) {
@@ -7506,32 +7600,43 @@ var CampaignComponent = function CampaignComponent() {
         },
         className: "inputName",
         placeholder: "Search by name"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
         className: "searchName",
         onClick: handleNameSearch,
-        children: "Search"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+        children: "Search Name"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
         className: "btnAction",
         onClick: handleResetFilters,
         children: "Reset Filters"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
         className: "btnAction",
         onClick: function onClick() {
           return setIsShowCampaign(!isShowCampaign);
         },
         children: "Add Campaign"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
       className: "".concat(!isShowCampaign ? "hideCampaignContainer" : "showCampaignContainer"),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_AddCampaign__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-    }), loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      className: "loadContainer",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_AddCampaign__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+    }), loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+      className: "loadContainer msgContainer",
       children: "Loading..."
-    }) : error || dateError ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-      className: "errorContainer",
-      children: ["Error: ", error || dateError]
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_CampaignList__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      campaignData: data
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+      children: [error || dateError ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+        className: "errorContainer msgContainer",
+        children: ["Error: ", error || dateError]
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_CampaignList__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        campaignData: currentItems
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_8___default()), {
+        breakLabel: "...",
+        nextLabel: ">",
+        onPageChange: handlePageClick,
+        pageRangeDisplayed: 5,
+        className: "pagination",
+        pageCount: pageCount,
+        previousLabel: "<",
+        renderOnZeroPageCount: null
+      })]
     })]
   });
 };
@@ -7539,10 +7644,10 @@ var CampaignComponent = function CampaignComponent() {
 
 /***/ }),
 
-/***/ "./resources/js/components/CampaignList.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/CampaignList.js ***!
-  \*************************************************/
+/***/ "./resources/js/components/Campaign/CampaignList.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Campaign/CampaignList.js ***!
+  \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7552,7 +7657,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _css_campaign_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/campaign.css */ "./resources/css/campaign.css");
+/* harmony import */ var _css_campaign_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../css/campaign.css */ "./resources/css/campaign.css");
 /* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-datepicker/dist/react-datepicker.css */ "./node_modules/react-datepicker/dist/react-datepicker.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
@@ -7576,7 +7681,7 @@ var CampaignList = function CampaignList(_ref) {
       }), " Inactive"]
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", {
+  return campaignData.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", {
     className: "campaignTable",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", {
       className: "tableHeader",
@@ -7608,12 +7713,15 @@ var CampaignList = function CampaignList(_ref) {
             children: item.endDate
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
             children: item.isActive ? activeCircle() : inactiveCircle()
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
-            children: [item.Budget, " USD"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+            children: item.Budget
           })]
         }, item.id);
       })
     })]
+  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    className: "msgContainer loadContainer",
+    children: "No data found"
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CampaignList);
@@ -7636,7 +7744,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./redux/store */ "./resources/js/components/redux/store.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _CampaignComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CampaignComponent */ "./resources/js/components/CampaignComponent.js");
+/* harmony import */ var _Campaign_CampaignComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Campaign/CampaignComponent */ "./resources/js/components/Campaign/CampaignComponent.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -7649,21 +7757,21 @@ function Example() {
     store: _redux_store__WEBPACK_IMPORTED_MODULE_2__["default"],
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       className: "container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_CampaignComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Campaign_CampaignComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {})
     })
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Example);
-if (document.getElementById('example')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Example, {}), document.getElementById('example'));
+if (document.getElementById("example")) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Example, {}), document.getElementById("example"));
 }
 
 /***/ }),
 
-/***/ "./resources/js/components/redux/store.js":
-/*!************************************************!*\
-  !*** ./resources/js/components/redux/store.js ***!
-  \************************************************/
+/***/ "./resources/js/components/redux/dataSlice.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/redux/dataSlice.js ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7676,15 +7784,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-
-var fetchData = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)('data/fetch', /*#__PURE__*/function () {
+var fetchData = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("data/fetch", /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(apiUrl) {
     var response;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -7705,13 +7811,13 @@ var fetchData = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThun
     return _ref.apply(this, arguments);
   };
 }());
-var postData = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)('data/post', /*#__PURE__*/function () {
+var postData = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("data/post", /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(postDataVal) {
     var apiUrl, response;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
-          apiUrl = "http://localhost/campaign/public/api/postcampaigndata";
+          apiUrl = "api/postcampaigndata";
           _context2.next = 3;
           return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, postDataVal);
         case 3:
@@ -7728,7 +7834,7 @@ var postData = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk
   };
 }());
 var dataSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)({
-  name: 'data',
+  name: "data",
   initialState: {
     items: [],
     loading: false,
@@ -7760,15 +7866,94 @@ var dataSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)({
     });
   }
 });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dataSlice);
+
+/***/ }),
+
+/***/ "./resources/js/components/redux/store.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/redux/store.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
+/* harmony import */ var _dataSlice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataSlice */ "./resources/js/components/redux/dataSlice.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+
+
+
 var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.configureStore)({
   reducer: {
-    data: dataSlice.reducer
+    data: _dataSlice__WEBPACK_IMPORTED_MODULE_0__["default"].reducer
   },
   middleware: function middleware(getDefaultMiddleware) {
     return getDefaultMiddleware().concat(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"]);
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
+
+/***/ }),
+
+/***/ "./resources/js/utils.js":
+/*!*******************************!*\
+  !*** ./resources/js/utils.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   formatCurrency: () => (/* binding */ formatCurrency),
+/* harmony export */   formatDate: () => (/* binding */ formatDate),
+/* harmony export */   handleKeyDown: () => (/* binding */ handleKeyDown),
+/* harmony export */   hasDecimal: () => (/* binding */ hasDecimal),
+/* harmony export */   isDateBetween: () => (/* binding */ isDateBetween)
+/* harmony export */ });
+var handleKeyDown = function handleKeyDown(event) {
+  event.preventDefault();
+};
+var formatDate = function formatDate(date) {
+  var forDisplay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var year = date.getFullYear();
+  return forDisplay ? "".concat(day, "/").concat(month, "/").concat(year) : "".concat(month, "/").concat(day, "/").concat(year);
+};
+var isDateBetween = function isDateBetween(startDate, endDate) {
+  var currentDate = new Date();
+  return currentDate >= startDate && currentDate <= endDate;
+};
+var hasDecimal = function hasDecimal(number) {
+  return number % 1 !== 0;
+};
+var formatCurrency = function formatCurrency(number) {
+  var abbreviations = {
+    K: 1000,
+    M: 1000000,
+    B: 1000000000,
+    T: 1000000000000
+  };
+  var roundedNum = Math.floor(number);
+  if (roundedNum < 1000) {
+    return "".concat(roundedNum, " USD");
+  }
+  var abbreviationsKeys = Object.keys(abbreviations).reverse();
+  for (var i = 0; i < abbreviationsKeys.length; i++) {
+    var abbreviationKey = abbreviationsKeys[i];
+    var abbreviationValue = abbreviations[abbreviationKey];
+    if (roundedNum >= abbreviationValue) {
+      var numberValue = roundedNum / abbreviationValue;
+      var formattedNumber = numberValue.toFixed(hasDecimal(numberValue) ? 1 : 0);
+      return "".concat(formattedNumber).concat(abbreviationKey, " USD");
+    }
+  }
+  return "".concat(roundedNum, " USD");
+};
 
 /***/ }),
 
@@ -22624,7 +22809,31 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n\tmargin: 0;\r\n\tbackground: linear-gradient(45deg, #49a09d, #5f2c82);\r\n\tfont-family: sans-serif;\r\n\tfont-weight: 100;\r\n    height: 100%;\r\n}\r\n\r\n.container {\r\n\tmargin-left: 25%;\r\n    margin-top: 5%;\r\n}\r\n\r\n.campaignTable{\r\n    width: 800px;\r\n\tborder-collapse: collapse;\r\n\toverflow: hidden;\r\n\tbox-shadow: 0 0 20px rgba(0,0,0,0.1);\r\n   \r\n}\r\n\r\n.tableHeader th, td {\r\n\tpadding: 15px;\r\n\tbackground-color: rgba(255,255,255,0.2);\r\n\tcolor: #fff;\r\n}\r\n\r\n.tableHeader th {\r\n\ttext-align: left;\r\n}\r\n\r\n.tableHeader {\r\n\t\r\n\tbackground-color: #172978;\r\n}\r\n\r\ntbody tr:hover {\r\n\t\r\n\tbackground-color: rgba(255,255,255,0.3);\r\n\t\r\n}\r\n\r\n.redCircle {\r\n    width: 15px;\r\n    height: 15px;\r\n    border-radius: 50%;\r\n    background-color: rgb(230, 29, 29);\r\n    display: inline-block;\r\n    top: 2px;\r\n}\r\n\r\n.greenCircle {\r\n    width: 15px;\r\n    height: 15px;\r\n    border-radius: 50%;\r\n    background-color: rgb(31, 185, 31);\r\n    display: inline-block;\r\n    top: 2px;\r\n}\r\n\r\n.inputName, .searchName, .inputStartDate, .inputEndDate, .btnAction, .searchDate {\r\n    padding: 10px;\r\n    font-size: 15px;\r\n    margin-bottom: 20px;\r\n    margin-right: 10px;\r\n}\r\n\r\n.searchName, .btnAction, .searchDate{\r\n    background-color:#172978;\r\n    color: #fff;\r\n    margin-right: 5px;\r\n}\r\n\r\n.inputStartDate, .inputEndDate{\r\n    margin-right: 10px;\r\n}\r\n\r\n.date-picker-container {\r\n    display: flex;\r\n}\r\n\r\n.date-picker-container .date-picker {\r\n    flex: 1;\r\n    margin-right: 10px;\r\n}\r\n\r\n.loadContainer, .errorContainer{\r\n    color: white;\r\n    font-family: sans-serif;\r\n\tfont-weight: 200;\r\n    font-size: 20px;\r\n}\r\n\r\n.hideCampaignContainer{\r\n    display: none;\r\n}\r\n  \r\n.showCampaignContainer{\r\n    display: block;\r\n}\r\n\r\n.postErrorContainer{\r\n    color:rgb(206, 90, 90);\r\n    font-size: 15px;\r\n    font-weight: 600;\r\n\r\n}\r\n  ", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n    margin: 0;\r\n    background: linear-gradient(45deg, #49a09d, #5f2c82);\r\n    padding: 0;\r\n    font-family: sans-serif;\r\n    font-weight: 100;\r\n    height: 100vh;\r\n}\r\n\r\n.container {\r\n    margin-left: 25%;\r\n    margin-top: 5%;\r\n}\r\n\r\n.campaignTable {\r\n    width: 800px;\r\n    border-collapse: collapse;\r\n    overflow: hidden;\r\n    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n.tableHeader th,\r\ntd {\r\n    padding: 15px;\r\n    background-color: rgba(255, 255, 255, 0.2);\r\n    color: #fff;\r\n}\r\n\r\n.tableHeader th {\r\n    text-align: left;\r\n}\r\n\r\n.tableHeader {\r\n    background-color: #172978;\r\n}\r\n\r\ntbody tr:hover {\r\n    background-color: rgba(255, 255, 255, 0.3);\r\n}\r\n\r\n.redCircle {\r\n    width: 15px;\r\n    height: 15px;\r\n    border-radius: 50%;\r\n    background-color: rgb(230, 29, 29);\r\n    display: inline-block;\r\n    top: 2px;\r\n}\r\n\r\n.greenCircle {\r\n    width: 15px;\r\n    height: 15px;\r\n    border-radius: 50%;\r\n    background-color: rgb(31, 185, 31);\r\n    display: inline-block;\r\n    top: 2px;\r\n}\r\n\r\n.inputName,\r\n.searchName,\r\n.inputStartDate,\r\n.inputEndDate,\r\n.btnAction,\r\n.searchDate {\r\n    padding: 10px;\r\n    font-size: 15px;\r\n    margin-bottom: 20px;\r\n    margin-right: 10px;\r\n}\r\n\r\n.searchName,\r\n.btnAction,\r\n.searchDate {\r\n    background-color: #172978;\r\n    color: #fff;\r\n    margin-right: 5px;\r\n}\r\n\r\n.inputStartDate,\r\n.inputEndDate {\r\n    margin-right: 10px;\r\n}\r\n\r\n.date-picker-container {\r\n    display: flex;\r\n}\r\n\r\n.date-picker-container .date-picker {\r\n    flex: 1;\r\n    margin-right: 10px;\r\n}\r\n\r\n.loadContainer {\r\n    color: #00529B;\r\n\tbackground-color: #BDE5F8;\r\n    font-size: 18px;\r\n    font-weight: 100;\r\n    text-align: center;\r\n}\r\n\r\n.hideCampaignContainer {\r\n    display: none;\r\n}\r\n\r\n.showCampaignContainer {\r\n    display: block;\r\n}\r\n\r\n.errorContainer, .postErrorContainer{\r\n    color: #D8000C;\r\n    background-color: #FFBABA;  \r\n}\r\n\r\n.postCampaignSuccess{\r\n    color: #4F8A10;\r\n    background-color: #DFF2BF;\r\n}\r\n\r\n.msgContainer {\r\n    padding: 5px;\r\n    width: 50em;\r\n    font-size: 14px;\r\n    font-weight: 100;\r\n    margin-bottom:10px; \r\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/css/paginate.css":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/css/paginate.css ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".pagination {\r\n    position: relative;\r\n    left: 35%;\r\n    /* top: 125%; */\r\n    transform: translate(-50%, -50%);\r\n    margin: 0;\r\n    padding: 10px;\r\n    background-color: #fff;\r\n    border-radius: 40px;\r\n    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.5);\r\n    display: inline-block;\r\n    justify-content: center;\r\n    list-style: none;\r\n    margin: 2rem 0;\r\n}\r\n.pagination li {\r\n    display: inline-block;\r\n    list-style: none;\r\n}\r\n\r\n.pagination a {\r\n    cursor: pointer;\r\n    display: block;\r\n    width: 40px;\r\n    height: 40px;\r\n    line-height: 40px;\r\n    background-color: #fff;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    color: #252525;\r\n    border-radius: 4px;\r\n    margin: 5px;\r\n    box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1),\r\n        0 2px 5px rgba(0, 0, 0, 0.5);\r\n    transition: all 0.3s ease;\r\n}\r\n.pagination li.previous a,\r\n.pagination li.next a,\r\n.pagination li.break a {\r\n    border-color: transparent;\r\n}\r\n.pagination li.selected a {\r\n    background-color: #172978;\r\n    border-color: transparent;\r\n    color: white;\r\n    min-width: 32px;\r\n}\r\n.pagination li.disabled a {\r\n    color: grey;\r\n}\r\n.pagination li.disable,\r\n.pagination li.disabled a {\r\n    cursor: default;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22764,6 +22973,36 @@ var update = _node_modules_laravel_mix_node_modules_style_loader_dist_runtime_in
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_campaign_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/css/paginate.css":
+/*!************************************!*\
+  !*** ./resources/css/paginate.css ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/laravel-mix/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/laravel-mix/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_paginate_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./paginate.css */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/css/paginate.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_laravel_mix_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_paginate_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_paginate_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -72263,6 +72502,17 @@ function onClickOutsideHOC(WrappedComponent, config) {
     return WrappedComponent.getClass ? WrappedComponent.getClass() : WrappedComponent;
   }, _temp;
 }/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (onClickOutsideHOC);
+
+/***/ }),
+
+/***/ "./node_modules/react-paginate/dist/react-paginate.js":
+/*!************************************************************!*\
+  !*** ./node_modules/react-paginate/dist/react-paginate.js ***!
+  \************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+!function(e,a){ true?module.exports=a(__webpack_require__(/*! react */ "./node_modules/react/index.js")):0}(this,(e=>(()=>{var a={703:(e,a,t)=>{"use strict";var r=t(414);function n(){}function i(){}i.resetWarningCache=n,e.exports=function(){function e(e,a,t,n,i,s){if(s!==r){var o=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw o.name="Invariant Violation",o}}function a(){return e}e.isRequired=e;var t={array:e,bigint:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:a,element:e,elementType:e,instanceOf:a,node:e,objectOf:a,oneOf:a,oneOfType:a,shape:a,exact:a,checkPropTypes:i,resetWarningCache:n};return t.PropTypes=t,t}},697:(e,a,t)=>{e.exports=t(703)()},414:e=>{"use strict";e.exports="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED"},98:a=>{"use strict";a.exports=e}},t={};function r(e){var n=t[e];if(void 0!==n)return n.exports;var i=t[e]={exports:{}};return a[e](i,i.exports,r),i.exports}r.n=e=>{var a=e&&e.__esModule?()=>e.default:()=>e;return r.d(a,{a}),a},r.d=(e,a)=>{for(var t in a)r.o(a,t)&&!r.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:a[t]})},r.o=(e,a)=>Object.prototype.hasOwnProperty.call(e,a),r.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})};var n={};return(()=>{"use strict";r.r(n),r.d(n,{default:()=>k});var e=r(98),a=r.n(e),t=r(697),i=r.n(t);function s(){return s=Object.assign?Object.assign.bind():function(e){for(var a=1;a<arguments.length;a++){var t=arguments[a];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e},s.apply(this,arguments)}var o=function(e){var t=e.pageClassName,r=e.pageLinkClassName,n=e.page,i=e.selected,o=e.activeClassName,l=e.activeLinkClassName,c=e.getEventListener,p=e.pageSelectedHandler,u=e.href,g=e.extraAriaContext,d=e.pageLabelBuilder,f=e.rel,b=e.ariaLabel||"Page "+n+(g?" "+g:""),v=null;return i&&(v="page",b=e.ariaLabel||"Page "+n+" is your current page",t=void 0!==t?t+" "+o:o,void 0!==r?void 0!==l&&(r=r+" "+l):r=l),a().createElement("li",{className:t},a().createElement("a",s({rel:f,role:u?void 0:"button",className:r,href:u,tabIndex:i?"-1":"0","aria-label":b,"aria-current":v,onKeyPress:p},c(p)),d(n)))};o.propTypes={pageSelectedHandler:i().func.isRequired,selected:i().bool.isRequired,pageClassName:i().string,pageLinkClassName:i().string,activeClassName:i().string,activeLinkClassName:i().string,extraAriaContext:i().string,href:i().string,ariaLabel:i().string,page:i().number.isRequired,getEventListener:i().func.isRequired,pageLabelBuilder:i().func.isRequired,rel:i().string};const l=o;function c(){return c=Object.assign?Object.assign.bind():function(e){for(var a=1;a<arguments.length;a++){var t=arguments[a];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e},c.apply(this,arguments)}var p=function(e){var t=e.breakLabel,r=e.breakAriaLabel,n=e.breakClassName,i=e.breakLinkClassName,s=e.breakHandler,o=e.getEventListener,l=n||"break";return a().createElement("li",{className:l},a().createElement("a",c({className:i,role:"button",tabIndex:"0","aria-label":r,onKeyPress:s},o(s)),t))};p.propTypes={breakLabel:i().oneOfType([i().string,i().node]),breakAriaLabel:i().string,breakClassName:i().string,breakLinkClassName:i().string,breakHandler:i().func.isRequired,getEventListener:i().func.isRequired};const u=p;function g(e){var a=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";return null!=e?e:a}function d(e){return d="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},d(e)}function f(){return f=Object.assign?Object.assign.bind():function(e){for(var a=1;a<arguments.length;a++){var t=arguments[a];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e},f.apply(this,arguments)}function b(e,a){for(var t=0;t<a.length;t++){var r=a[t];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function v(e,a){return v=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(e,a){return e.__proto__=a,e},v(e,a)}function h(e,a){if(a&&("object"===d(a)||"function"==typeof a))return a;if(void 0!==a)throw new TypeError("Derived constructors may only return object or undefined");return m(e)}function m(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function y(e){return y=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(e){return e.__proto__||Object.getPrototypeOf(e)},y(e)}function C(e,a,t){return a in e?Object.defineProperty(e,a,{value:t,enumerable:!0,configurable:!0,writable:!0}):e[a]=t,e}var P=function(e){!function(e,a){if("function"!=typeof a&&null!==a)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(a&&a.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),Object.defineProperty(e,"prototype",{writable:!1}),a&&v(e,a)}(o,e);var t,r,n,i,s=(n=o,i=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}(),function(){var e,a=y(n);if(i){var t=y(this).constructor;e=Reflect.construct(a,arguments,t)}else e=a.apply(this,arguments);return h(this,e)});function o(e){var t,r;return function(e,a){if(!(e instanceof a))throw new TypeError("Cannot call a class as a function")}(this,o),C(m(t=s.call(this,e)),"handlePreviousPage",(function(e){var a=t.state.selected;t.handleClick(e,null,a>0?a-1:void 0,{isPrevious:!0})})),C(m(t),"handleNextPage",(function(e){var a=t.state.selected,r=t.props.pageCount;t.handleClick(e,null,a<r-1?a+1:void 0,{isNext:!0})})),C(m(t),"handlePageSelected",(function(e,a){if(t.state.selected===e)return t.callActiveCallback(e),void t.handleClick(a,null,void 0,{isActive:!0});t.handleClick(a,null,e)})),C(m(t),"handlePageChange",(function(e){t.state.selected!==e&&(t.setState({selected:e}),t.callCallback(e))})),C(m(t),"getEventListener",(function(e){return C({},t.props.eventListener,e)})),C(m(t),"handleClick",(function(e,a,r){var n=arguments.length>3&&void 0!==arguments[3]?arguments[3]:{},i=n.isPrevious,s=void 0!==i&&i,o=n.isNext,l=void 0!==o&&o,c=n.isBreak,p=void 0!==c&&c,u=n.isActive,g=void 0!==u&&u;e.preventDefault?e.preventDefault():e.returnValue=!1;var d=t.state.selected,f=t.props.onClick,b=r;if(f){var v=f({index:a,selected:d,nextSelectedPage:r,event:e,isPrevious:s,isNext:l,isBreak:p,isActive:g});if(!1===v)return;Number.isInteger(v)&&(b=v)}void 0!==b&&t.handlePageChange(b)})),C(m(t),"handleBreakClick",(function(e,a){var r=t.state.selected;t.handleClick(a,e,r<e?t.getForwardJump():t.getBackwardJump(),{isBreak:!0})})),C(m(t),"callCallback",(function(e){void 0!==t.props.onPageChange&&"function"==typeof t.props.onPageChange&&t.props.onPageChange({selected:e})})),C(m(t),"callActiveCallback",(function(e){void 0!==t.props.onPageActive&&"function"==typeof t.props.onPageActive&&t.props.onPageActive({selected:e})})),C(m(t),"getElementPageRel",(function(e){var a=t.state.selected,r=t.props,n=r.nextPageRel,i=r.prevPageRel,s=r.selectedPageRel;return a-1===e?i:a===e?s:a+1===e?n:void 0})),C(m(t),"pagination",(function(){var e=[],r=t.props,n=r.pageRangeDisplayed,i=r.pageCount,s=r.marginPagesDisplayed,o=r.breakLabel,l=r.breakClassName,c=r.breakLinkClassName,p=r.breakAriaLabels,g=t.state.selected;if(i<=n)for(var d=0;d<i;d++)e.push(t.getPageElement(d));else{var f=n/2,b=n-f;g>i-n/2?f=n-(b=i-g):g<n/2&&(b=n-(f=g));var v,h,m=function(e){return t.getPageElement(e)},y=[];for(v=0;v<i;v++){var C=v+1;if(C<=s)y.push({type:"page",index:v,display:m(v)});else if(C>i-s)y.push({type:"page",index:v,display:m(v)});else if(v>=g-f&&v<=g+(0===g&&n>1?b-1:b))y.push({type:"page",index:v,display:m(v)});else if(o&&y.length>0&&y[y.length-1].display!==h&&(n>0||s>0)){var P=v<g?p.backward:p.forward;h=a().createElement(u,{key:v,breakAriaLabel:P,breakLabel:o,breakClassName:l,breakLinkClassName:c,breakHandler:t.handleBreakClick.bind(null,v),getEventListener:t.getEventListener}),y.push({type:"break",index:v,display:h})}}y.forEach((function(a,t){var r=a;"break"===a.type&&y[t-1]&&"page"===y[t-1].type&&y[t+1]&&"page"===y[t+1].type&&y[t+1].index-y[t-1].index<=2&&(r={type:"page",index:a.index,display:m(a.index)}),e.push(r.display)}))}return e})),void 0!==e.initialPage&&void 0!==e.forcePage&&console.warn("(react-paginate): Both initialPage (".concat(e.initialPage,") and forcePage (").concat(e.forcePage,") props are provided, which is discouraged.")+" Use exclusively forcePage prop for a controlled component.\nSee https://reactjs.org/docs/forms.html#controlled-components"),r=e.initialPage?e.initialPage:e.forcePage?e.forcePage:0,t.state={selected:r},t}return t=o,(r=[{key:"componentDidMount",value:function(){var e=this.props,a=e.initialPage,t=e.disableInitialCallback,r=e.extraAriaContext,n=e.pageCount,i=e.forcePage;void 0===a||t||this.callCallback(a),r&&console.warn("DEPRECATED (react-paginate): The extraAriaContext prop is deprecated. You should now use the ariaLabelBuilder instead."),Number.isInteger(n)||console.warn("(react-paginate): The pageCount prop value provided is not an integer (".concat(n,"). Did you forget a Math.ceil()?")),void 0!==a&&a>n-1&&console.warn("(react-paginate): The initialPage prop provided is greater than the maximum page index from pageCount prop (".concat(a," > ").concat(n-1,").")),void 0!==i&&i>n-1&&console.warn("(react-paginate): The forcePage prop provided is greater than the maximum page index from pageCount prop (".concat(i," > ").concat(n-1,")."))}},{key:"componentDidUpdate",value:function(e){void 0!==this.props.forcePage&&this.props.forcePage!==e.forcePage&&(this.props.forcePage>this.props.pageCount-1&&console.warn("(react-paginate): The forcePage prop provided is greater than the maximum page index from pageCount prop (".concat(this.props.forcePage," > ").concat(this.props.pageCount-1,").")),this.setState({selected:this.props.forcePage})),Number.isInteger(e.pageCount)&&!Number.isInteger(this.props.pageCount)&&console.warn("(react-paginate): The pageCount prop value provided is not an integer (".concat(this.props.pageCount,"). Did you forget a Math.ceil()?"))}},{key:"getForwardJump",value:function(){var e=this.state.selected,a=this.props,t=a.pageCount,r=e+a.pageRangeDisplayed;return r>=t?t-1:r}},{key:"getBackwardJump",value:function(){var e=this.state.selected-this.props.pageRangeDisplayed;return e<0?0:e}},{key:"getElementHref",value:function(e){var a=this.props,t=a.hrefBuilder,r=a.pageCount,n=a.hrefAllControls;if(t)return n||e>=0&&e<r?t(e+1,r,this.state.selected):void 0}},{key:"ariaLabelBuilder",value:function(e){var a=e===this.state.selected;if(this.props.ariaLabelBuilder&&e>=0&&e<this.props.pageCount){var t=this.props.ariaLabelBuilder(e+1,a);return this.props.extraAriaContext&&!a&&(t=t+" "+this.props.extraAriaContext),t}}},{key:"getPageElement",value:function(e){var t=this.state.selected,r=this.props,n=r.pageClassName,i=r.pageLinkClassName,s=r.activeClassName,o=r.activeLinkClassName,c=r.extraAriaContext,p=r.pageLabelBuilder;return a().createElement(l,{key:e,pageSelectedHandler:this.handlePageSelected.bind(null,e),selected:t===e,rel:this.getElementPageRel(e),pageClassName:n,pageLinkClassName:i,activeClassName:s,activeLinkClassName:o,extraAriaContext:c,href:this.getElementHref(e),ariaLabel:this.ariaLabelBuilder(e),page:e+1,pageLabelBuilder:p,getEventListener:this.getEventListener})}},{key:"render",value:function(){var e=this.props.renderOnZeroPageCount;if(0===this.props.pageCount&&void 0!==e)return e?e(this.props):e;var t=this.props,r=t.disabledClassName,n=t.disabledLinkClassName,i=t.pageCount,s=t.className,o=t.containerClassName,l=t.previousLabel,c=t.previousClassName,p=t.previousLinkClassName,u=t.previousAriaLabel,d=t.prevRel,b=t.nextLabel,v=t.nextClassName,h=t.nextLinkClassName,m=t.nextAriaLabel,y=t.nextRel,C=this.state.selected,P=0===C,k=C===i-1,x="".concat(g(c)).concat(P?" ".concat(g(r)):""),L="".concat(g(v)).concat(k?" ".concat(g(r)):""),N="".concat(g(p)).concat(P?" ".concat(g(n)):""),O="".concat(g(h)).concat(k?" ".concat(g(n)):""),R=P?"true":"false",E=k?"true":"false";return a().createElement("ul",{className:s||o,role:"navigation","aria-label":"Pagination"},a().createElement("li",{className:x},a().createElement("a",f({className:N,href:this.getElementHref(C-1),tabIndex:P?"-1":"0",role:"button",onKeyPress:this.handlePreviousPage,"aria-disabled":R,"aria-label":u,rel:d},this.getEventListener(this.handlePreviousPage)),l)),this.pagination(),a().createElement("li",{className:L},a().createElement("a",f({className:O,href:this.getElementHref(C+1),tabIndex:k?"-1":"0",role:"button",onKeyPress:this.handleNextPage,"aria-disabled":E,"aria-label":m,rel:y},this.getEventListener(this.handleNextPage)),b)))}}])&&b(t.prototype,r),Object.defineProperty(t,"prototype",{writable:!1}),o}(e.Component);C(P,"propTypes",{pageCount:i().number.isRequired,pageRangeDisplayed:i().number,marginPagesDisplayed:i().number,previousLabel:i().node,previousAriaLabel:i().string,prevPageRel:i().string,prevRel:i().string,nextLabel:i().node,nextAriaLabel:i().string,nextPageRel:i().string,nextRel:i().string,breakLabel:i().oneOfType([i().string,i().node]),breakAriaLabels:i().shape({forward:i().string,backward:i().string}),hrefBuilder:i().func,hrefAllControls:i().bool,onPageChange:i().func,onPageActive:i().func,onClick:i().func,initialPage:i().number,forcePage:i().number,disableInitialCallback:i().bool,containerClassName:i().string,className:i().string,pageClassName:i().string,pageLinkClassName:i().string,pageLabelBuilder:i().func,activeClassName:i().string,activeLinkClassName:i().string,previousClassName:i().string,nextClassName:i().string,previousLinkClassName:i().string,nextLinkClassName:i().string,disabledClassName:i().string,disabledLinkClassName:i().string,breakClassName:i().string,breakLinkClassName:i().string,extraAriaContext:i().string,ariaLabelBuilder:i().func,eventListener:i().string,renderOnZeroPageCount:i().func,selectedPageRel:i().string}),C(P,"defaultProps",{pageRangeDisplayed:2,marginPagesDisplayed:3,activeClassName:"selected",previousLabel:"Previous",previousClassName:"previous",previousAriaLabel:"Previous page",prevPageRel:"prev",prevRel:"prev",nextLabel:"Next",nextClassName:"next",nextAriaLabel:"Next page",nextPageRel:"next",nextRel:"next",breakLabel:"...",breakAriaLabels:{forward:"Jump forward",backward:"Jump backward"},disabledClassName:"disabled",disableInitialCallback:!1,pageLabelBuilder:function(e){return e},eventListener:"onClick",renderOnZeroPageCount:void 0,selectedPageRel:"canonical",hrefAllControls:!1});const k=P})(),n})()));
+//# sourceMappingURL=react-paginate.js.map
 
 /***/ }),
 

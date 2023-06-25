@@ -23,11 +23,3 @@ Route::get('/campaigndata', [ApiController::class, 'getCampaignData']);
 Route::post('/postcampaigndata', [ApiController::class, 'postCampaignData']);
 
 
-Route::get('/env', function () {
-    return response()->json([
-        'APP_URL' => env('APP_URL'),
-        'APP_ENV' => env('APP_ENV'),
-        // Add other environment variables you want to expose
-    ]);
-});
-

@@ -1,43 +1,41 @@
 body {
-	margin: 0;
-	background: linear-gradient(45deg, #49a09d, #5f2c82);
-	font-family: sans-serif;
-	font-weight: 100;
-    height: 100%;
+    margin: 0;
+    background: linear-gradient(45deg, #49a09d, #5f2c82);
+    padding: 0;
+    font-family: sans-serif;
+    font-weight: 100;
+    height: 100vh;
 }
 
 .container {
-	margin-left: 25%;
+    margin-left: 25%;
     margin-top: 5%;
 }
 
-.campaignTable{
+.campaignTable {
     width: 800px;
-	border-collapse: collapse;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0,0,0,0.1);
-   
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.tableHeader th, td {
-	padding: 15px;
-	background-color: rgba(255,255,255,0.2);
-	color: #fff;
+.tableHeader th,
+td {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
 }
 
 .tableHeader th {
-	text-align: left;
+    text-align: left;
 }
 
 .tableHeader {
-	
-	background-color: #172978;
+    background-color: #172978;
 }
 
 tbody tr:hover {
-	
-	background-color: rgba(255,255,255,0.3);
-	
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .redCircle {
@@ -58,20 +56,28 @@ tbody tr:hover {
     top: 2px;
 }
 
-.inputName, .searchName, .inputStartDate, .inputEndDate, .btnAction, .searchDate {
+.inputName,
+.searchName,
+.inputStartDate,
+.inputEndDate,
+.btnAction,
+.searchDate {
     padding: 10px;
     font-size: 15px;
     margin-bottom: 20px;
     margin-right: 10px;
 }
 
-.searchName, .btnAction, .searchDate{
-    background-color:#172978;
+.searchName,
+.btnAction,
+.searchDate {
+    background-color: #172978;
     color: #fff;
     margin-right: 5px;
 }
 
-.inputStartDate, .inputEndDate{
+.inputStartDate,
+.inputEndDate {
     margin-right: 10px;
 }
 
@@ -84,25 +90,36 @@ tbody tr:hover {
     margin-right: 10px;
 }
 
-.loadContainer, .errorContainer{
-    color: white;
-    font-family: sans-serif;
-	font-weight: 200;
-    font-size: 20px;
+.loadContainer {
+    color: #00529B;
+	background-color: #BDE5F8;
+    font-size: 18px;
+    font-weight: 100;
+    text-align: center;
 }
 
-.hideCampaignContainer{
+.hideCampaignContainer {
     display: none;
 }
-  
-.showCampaignContainer{
+
+.showCampaignContainer {
     display: block;
 }
 
-.postErrorContainer{
-    color:rgb(206, 90, 90);
-    font-size: 15px;
-    font-weight: 600;
-
+.errorContainer, .postErrorContainer{
+    color: #D8000C;
+    background-color: #FFBABA;  
 }
-  
+
+.postCampaignSuccess{
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+
+.msgContainer {
+    padding: 5px;
+    width: 50em;
+    font-size: 14px;
+    font-weight: 100;
+    margin-bottom:10px; 
+}
