@@ -7497,7 +7497,6 @@ var CampaignComponent = function CampaignComponent() {
     }
   }
   var handleNameSearch = function handleNameSearch() {
-    console.log("callleddddd");
     if (nameSearchVal.trim() !== "") {
       setDateError("");
       var filterDataValue = items.filter(function (item) {

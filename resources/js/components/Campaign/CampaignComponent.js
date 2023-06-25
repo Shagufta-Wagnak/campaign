@@ -66,7 +66,6 @@ const CampaignComponent = () => {
     }
 
     const handleNameSearch = () => {
-        console.log("callleddddd");
         if (nameSearchVal.trim() !== "") {
             setDateError("");
             const filterDataValue = items.filter((item) => {
