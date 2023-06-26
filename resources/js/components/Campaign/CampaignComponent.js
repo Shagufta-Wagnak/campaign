@@ -66,8 +66,10 @@ const CampaignComponent = () => {
     }
 
     const handleNameSearch = () => {
+        setActivePage("");
         if (nameSearchVal.trim() !== "") {
             setDateError("");
+            
             const filterDataValue = items.filter((item) => {
                 return item.name
                     .toLowerCase()
@@ -116,13 +118,16 @@ const CampaignComponent = () => {
     };
 
     const handleDateFilter = (e) => {
+        setActivePage("");
         const validationDate = validateDates();
+        
 
         if (!startDateSearchVal || !endDateSearchVal) {
             setDateError("Start Date or End Date cannot be empty");
             return false;
         }
         if (startDateSearchVal && endDateSearchVal && validationDate) {
+           
             setDateError("");
             const filteredDate = filterData(items);
             if (nameSearchVal !== "") {
@@ -165,6 +170,7 @@ const CampaignComponent = () => {
         }
     }, [startDateSearchVal]);
 
+   
     return (
         <div>
             <div>

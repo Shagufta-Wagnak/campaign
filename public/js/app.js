@@ -7497,6 +7497,7 @@ var CampaignComponent = function CampaignComponent() {
     }
   }
   var handleNameSearch = function handleNameSearch() {
+    setActivePage("");
     if (nameSearchVal.trim() !== "") {
       setDateError("");
       var filterDataValue = items.filter(function (item) {
@@ -7533,6 +7534,7 @@ var CampaignComponent = function CampaignComponent() {
     return filtered;
   };
   var handleDateFilter = function handleDateFilter(e) {
+    setActivePage("");
     var validationDate = validateDates();
     if (!startDateSearchVal || !endDateSearchVal) {
       setDateError("Start Date or End Date cannot be empty");
