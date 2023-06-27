@@ -6,7 +6,7 @@ import AddCampaignComponent from "./AddCampaign";
 import CampaignList from "./CampaignList";
 import "../../../css/campaign.css";
 import "react-datepicker/dist/react-datepicker.css";
-import '../../../css/paginate.css';
+import "../../../css/paginate.css";
 import ReactPaginate from "react-paginate";
 import {
     handleKeyDown,
@@ -27,6 +27,7 @@ const CampaignComponent = () => {
     const [activePage, setActivePage] = useState("");
     const { items, loading, error } = useSelector((state) => state.data);
     const [itemOffset, setItemOffset] = useState(0);
+    const [paginationKey, setPaginationKey] = useState(Date.now());
     const itemsPerPage = 10;
     const endOffset = itemOffset + itemsPerPage;
     const currentItems = data?.slice(itemOffset, endOffset);
@@ -66,10 +67,10 @@ const CampaignComponent = () => {
     }
 
     const handleNameSearch = () => {
-        setActivePage("");
+        // setActivePage("");
         if (nameSearchVal.trim() !== "") {
             setDateError("");
-            
+
             const filterDataValue = items.filter((item) => {
                 return item.name
                     .toLowerCase()
@@ -83,6 +84,7 @@ const CampaignComponent = () => {
             }
             setItemOffset(0);
             setActivePage(0);
+            setPaginationKey(Date.now());
         } else {
             setDateError("Please enter name to search");
         }
@@ -118,16 +120,14 @@ const CampaignComponent = () => {
     };
 
     const handleDateFilter = (e) => {
-        setActivePage("");
+        // setActivePage("");
         const validationDate = validateDates();
-        
 
         if (!startDateSearchVal || !endDateSearchVal) {
             setDateError("Start Date or End Date cannot be empty");
             return false;
         }
         if (startDateSearchVal && endDateSearchVal && validationDate) {
-           
             setDateError("");
             const filteredDate = filterData(items);
             if (nameSearchVal !== "") {
@@ -140,6 +140,7 @@ const CampaignComponent = () => {
             }
             setItemOffset(0);
             setActivePage(0);
+            setPaginationKey(Date.now());
         }
         return true;
     };
@@ -170,7 +171,6 @@ const CampaignComponent = () => {
         }
     }, [startDateSearchVal]);
 
-   
     return (
         <div>
             <div>
@@ -250,6 +250,7 @@ const CampaignComponent = () => {
                         forcePage={activePage}
                         previousLabel="<"
                         renderOnZeroPageCount={null}
+                        key={paginationKey}
                     />
                 </>
             )}

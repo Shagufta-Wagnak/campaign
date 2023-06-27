@@ -7465,6 +7465,10 @@ var CampaignComponent = function CampaignComponent() {
     _useState18 = _slicedToArray(_useState17, 2),
     itemOffset = _useState18[0],
     setItemOffset = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(Date.now()),
+    _useState20 = _slicedToArray(_useState19, 2),
+    paginationKey = _useState20[0],
+    setPaginationKey = _useState20[1];
   var itemsPerPage = 10;
   var endOffset = itemOffset + itemsPerPage;
   var currentItems = data === null || data === void 0 ? void 0 : data.slice(itemOffset, endOffset);
@@ -7497,7 +7501,7 @@ var CampaignComponent = function CampaignComponent() {
     }
   }
   var handleNameSearch = function handleNameSearch() {
-    setActivePage("");
+    // setActivePage("");
     if (nameSearchVal.trim() !== "") {
       setDateError("");
       var filterDataValue = items.filter(function (item) {
@@ -7511,6 +7515,7 @@ var CampaignComponent = function CampaignComponent() {
       }
       setItemOffset(0);
       setActivePage(0);
+      setPaginationKey(Date.now());
     } else {
       setDateError("Please enter name to search");
     }
@@ -7534,7 +7539,7 @@ var CampaignComponent = function CampaignComponent() {
     return filtered;
   };
   var handleDateFilter = function handleDateFilter(e) {
-    setActivePage("");
+    // setActivePage("");
     var validationDate = validateDates();
     if (!startDateSearchVal || !endDateSearchVal) {
       setDateError("Start Date or End Date cannot be empty");
@@ -7551,6 +7556,7 @@ var CampaignComponent = function CampaignComponent() {
       }
       setItemOffset(0);
       setActivePage(0);
+      setPaginationKey(Date.now());
     }
     return true;
   };
@@ -7648,7 +7654,7 @@ var CampaignComponent = function CampaignComponent() {
         forcePage: activePage,
         previousLabel: "<",
         renderOnZeroPageCount: null
-      })]
+      }, paginationKey)]
     })]
   });
 };
