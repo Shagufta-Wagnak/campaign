@@ -49,5 +49,5 @@ npm run dev
 
 php artisan serve
 
-8. click on the link generated on terminal or copy paste it on browser after running above command to redirect.
+8. Click on the link generated on terminal or copy paste it on browser after running above command to redirect.
 
